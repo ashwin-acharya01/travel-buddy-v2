@@ -1,17 +1,19 @@
 import React from 'react';
-import { Box, Divider, Textarea, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Button, } from '@chakra-ui/react';
+import { Box, Divider, Textarea, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Button, Flex } from '@chakra-ui/react';
 import { placeDetails } from '../../constants';
-import { Navbar, TextEditor } from '../../components';
+import { Navbar, TextEditor, PlaceCard } from '../../components';
+// import { placeholderCSS } from 'react-select/dist/declarations/src/components/Placeholder';
 
 const PlanTrip = () => {
   const [title, setTitle] = React.useState(
     'Trip to ' + placeDetails.name.toUpperCase()
   );
   const [notes, setNotes] = React.useState("");
+  const [placesToVisit, setPlacesToVisit] = React.useState([]);
 
   React.useEffect(() => {
-    console.log(notes);
-  }, [notes])
+    console.log(placesToVisit);
+  }, [placesToVisit])
 
   return (
     <Box w="100%">
@@ -61,11 +63,19 @@ const PlanTrip = () => {
                 <AccordionIcon />
               </AccordionButton>
             </h2>
-            <AccordionPanel pb={4} fontSize="14px">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+            <AccordionPanel pb={4} fontSize="14px" padding="1rem">
+            <Flex w="100%" overflowX={"auto"} gap="1rem" alignItems="center" p="1rem">
+              {placeDetails.best_places.map((place) => {
+                return (
+                  <PlaceCard 
+                    img={place.picture}
+                    title={place.name}
+                    description={place.description}
+                    onAdd={() => setPlacesToVisit([...placesToVisit, place])}
+                  />
+                );
+              })}
+              </Flex>
             </AccordionPanel>
           </AccordionItem>
 

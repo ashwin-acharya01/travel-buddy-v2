@@ -2,3 +2,14 @@
 *{
     font-family: 'Roboto', 'sans-serif';
 }
+
+::-webkit-scrollbar{
+    width: 2.5px;
+    height: 5px;
+    border-radius: 2.5px;
+    background-color: rgb(210, 210, 210);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: darkgray;
+}
